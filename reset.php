@@ -20,21 +20,30 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
                         <img src="assets/img/pantone.png" class="object-cover w-full h-32" alt="">
                     </div>
                 </div>
-                <form action="" method="post" class="mt-8">
+                <form action="<?php echo htmlspecialchars(''); ?>" method="post" class="mt-8">
                     <div class="w-full">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
-                            Email Address
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold" for="password">
+                            Password
                         </label>
-                        <input id="email" name="email" type="email" placeholder="john@mail.com" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <input id="password" name="password" type="password" placeholder="**********" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                     </div>
-                    <?php if (!empty($_SESSION["email_err"])): ?>
-                        <p class="text-red-500 text-xs italic"><?php echo $_SESSION["email_err"]; ?></p>
+                    <?php if (!empty($_SESSION["password_err"])): ?>
+                        <p class="text-red-500 text-xs italic"><?php echo $_SESSION["password_err"]; ?></p>
+                    <?php endif; ?>
+                    <div class="w-full mt-8">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold" for="confirm">
+                            Confirm Password
+                        </label>
+                        <input id="confirm" name="confirm" type="password" placeholder="********" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    </div>
+                    <?php if (!empty($_SESSION["confirm_err"])): ?>
+                        <p class="text-red-500 text-xs italic"><?php echo $_SESSION["confirm_err"]; ?></p>
                     <?php endif; ?>
 
                     <div class="flex mt-4">
                         <div class="w-full">
-                            <button type="submit" class="bg-gray-800 hover:bg-black w-full text-white font-bold py-2 px-6 rounded">
-                                Reset Password
+                            <button type="submit" class="bg-gray-800 hover:bg-black text-white w-full font-bold py-2 px-6 rounded">
+                                Update Password
                             </button>
                         </div>
                     </div>
@@ -69,5 +78,3 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
     <?php endif; ?>
 
 <?php include 'include/footer.inc.php'; ?>
-
-<?php session_destroy(); ?>
